@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Expiry Date Tracker - Piyush</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<nav>
+		<a href="index.html">Home</a>
+		<a href="about.html">About</a>
+		<a href="contact.html">Contact</a>
+	</nav>
+
+	<main class="expiry-main">
+		<header class="expiry-header">
+			<p class="eyebrow">Mini application</p>
+			<h1>Expiry Date Tracker</h1>
+			<p>Keep track of products and see which expiry dates are coming up.</p>
+		</header>
+
+		<section class="expiry-dashboard" aria-label="Expiry summary">
+			<div class="dashboard-card">
+				<span class="dashboard-label">Total Products</span>
+				<strong id="totalProducts">0</strong>
+			</div>
+			<div class="dashboard-card dashboard-soon">
+				<span class="dashboard-label">Expiring Soon</span>
+				<strong id="expiringSoon">0</strong>
+			</div>
+			<div class="dashboard-card dashboard-expired">
+				<span class="dashboard-label">Expired</span>
+				<strong id="expiredProducts">0</strong>
+			</div>
+		</section>
+
+		<form id="expiryForm" class="contact-form expiry-form" novalidate>
+			<div class="form-field">
+				<label for="productName">Product Name</label>
+				<input id="productName" name="productName" type="text" placeholder="Enter product name" required>
+			</div>
+
+			<div class="form-field">
+				<label for="expiryDate">Expiry Date</label>
+				<input id="expiryDate" name="expiryDate" type="date" required>
+			</div>
+
+			<button type="submit">Add Product</button>
+			<p id="expiryMessage" class="form-message" role="status" aria-live="polite"></p>
+		</form>
+
+		<section class="expiry-list" aria-labelledby="products-title">
+			<div class="list-heading">
+				<h2 id="products-title">Your Products</h2>
+				<label class="search-label" for="productSearch">Search products</label>
+				<input id="productSearch" class="product-search" type="search" placeholder="Search by product name">
+			</div>
+			<div id="productList"></div>
+		</section>
+	</main>
+
+	<footer class="site-footer">
+		<div class="footer-content">
+			<div class="footer-intro">
+				<p class="footer-copyright">&copy; 2026 Piyush. All Rights Reserved.</p>
+				<p>BCA Student &amp; Aspiring Cloud Developer</p>
+			</div>
+			<div class="footer-links">
+				<a href="index.html">Home</a>
+				<a href="about.html">About</a>
+				<a href="index.html#projects-title">Projects</a>
+				<a href="contact.html">Contact</a>
+			</div>
+			<div class="social-links" aria-label="Social links">
+				<a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">in</a>
+				<a href="https://github.com/" target="_blank" rel="noopener noreferrer" aria-label="GitHub">GH</a>
+				<a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">IG</a>
+			</div>
+		</div>
+	</footer>
+
+	<script src="script.js"></script>
+</body>
+</html>
