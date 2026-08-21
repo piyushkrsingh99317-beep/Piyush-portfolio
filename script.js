@@ -31,9 +31,19 @@ if (contactForm) {
 			return;
 		}
 
-		formMessage.textContent = "Thank you! Your message has been sent successfully.";
+		formMessage.textContent = "Thank you! Your message has been received.";
 		formMessage.className = "form-message form-success";
 		contactForm.reset();
+	});
+}
+
+const trackerButton = document.getElementById("trackerButton");
+const trackerMessage = document.getElementById("trackerMessage");
+
+if (trackerButton) {
+	trackerButton.addEventListener("click", function () {
+		trackerMessage.textContent = "Coming Soon: this project is still in development.";
+		trackerMessage.className = "form-message project-message form-success";
 	});
 }
 
