@@ -14,26 +14,56 @@ if (contactForm) {
 	const message = document.getElementById("message");
 	const formMessage = document.getElementById("formMessage");
 
-	contactForm.addEventListener("submit", function (event) {
+	contactForm.addEventListener("submit", async function (event) {
 		event.preventDefault();
 
 		const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+		const fullNameValue = fullName.value.trim();
+		const emailValue = email.value.trim();
+		const messageValue = message.value.trim();
 
-		if (!fullName.value.trim() || !email.value.trim() || !message.value.trim()) {
+		if (!fullNameValue || !emailValue || !messageValue) {
 			formMessage.textContent = "Please fill in your full name, email and message.";
 			formMessage.className = "form-message form-error";
 			return;
 		}
 
-		if (!emailPattern.test(email.value.trim())) {
+		if (!emailPattern.test(emailValue)) {
 			formMessage.textContent = "Please enter a valid email address.";
 			formMessage.className = "form-message form-error";
 			return;
 		}
 
-		formMessage.textContent = "Thank you! Your message has been received.";
-		formMessage.className = "form-message form-success";
-		contactForm.reset();
+		try {
+			const response = await fetch("http://localhost:3000/contact", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json"
+				},
+				body: JSON.stringify({
+					fullName: fullNameValue,
+					email: emailValue,
+					message: messageValue
+				})
+			});
+
+			if (!response.ok) {
+				throw new Error("Server responded with an error.");
+			}
+
+			const data = await response.json();
+
+			if (!data || data.success !== true) {
+				throw new Error("Invalid server response.");
+			}
+
+			formMessage.textContent = data.message || "Your message has been received successfully!";
+			formMessage.className = "form-message form-success";
+			contactForm.reset();
+		} catch (error) {
+			formMessage.textContent = "Unable to connect to the server.";
+			formMessage.className = "form-message form-error";
+		}
 	});
 }
 
