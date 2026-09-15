@@ -2,7 +2,7 @@ const clickButton = document.getElementById("clickButton");
 
 if (clickButton) {
 	clickButton.addEventListener("click", function () {
-		alert("Hello ! Welcome to my Website, Piyush.");
+		alert("Hello! Welcome to my website, Piyush Kumar Singh.");
 	});
 }
 
